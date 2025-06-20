@@ -1,10 +1,9 @@
-<!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto</title>
+    <title>Artix</title>
 </head>
 
 <body>
