@@ -32,6 +32,7 @@ class ClientController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|integer|max:50',
         ]);
         Client::create($request->all());
         return view('clienti.create');
@@ -48,19 +49,27 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $clienti)
     {
-        //
+        return view('clienti.edit', compact('clienti'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $clienti)
     {
-        //
-    }
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|integer|max:9999999999',
+            'email' => 'required|email|max:255',
+        ]);
 
+        $clienti->update($request->all());
+
+        return redirect()->route('clienti.index');
+    }
     /**
      * Remove the specified resource from storage.
      */
