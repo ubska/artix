@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-md">
+
         <h1>Lista clienti</h1>
         <table class="table">
             <thead>
@@ -13,12 +14,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clienti as $client)
+                @foreach ($clienti as $cliente)
                     <tr>
-                        <td>{{ $client->first_name }}</td>
-                        <td>{{ $client->last_name }}</td>
-                        <td>{{ $client->email }}</td>
-                        <td>{{ $client->phone_number }}</td>
+                        <td>{{ $cliente->id }}</td>
+                        <td>{{ $cliente->first_name }}</td>
+                        <td>{{ $cliente->last_name }}</td>
+                        <td>{{ $cliente->email }}</td>
+                        <td>{{ $cliente->phone_number }}</td>
+                        <td>
+                            <a href="{{ route('clienti.show', $cliente->id) }}" class="btn btn-info btn-sm">Vedi</a>
+                            <a href="{{ route('clienti.edit', $cliente->id) }}" class="btn btn-primary btn-sm">Modifica</a>
+
+                            <form action="{{ route('clienti.destroy', $cliente->id) }}" method="POST"
+                                style="display:inline-block"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questo cliente?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
