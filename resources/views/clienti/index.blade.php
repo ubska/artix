@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-md">
+    <div class="fluid">
+        <a href="{{ route('clienti.create') }}" class="btn btn-outline-success">Aggiungi nuovo cliente</a>
 
-        <h1>Lista clienti</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -16,7 +16,6 @@
             <tbody>
                 @foreach ($clienti as $cliente)
                     <tr>
-                        <td>{{ $cliente->id }}</td>
                         <td>{{ $cliente->first_name }}</td>
                         <td>{{ $cliente->last_name }}</td>
                         <td>{{ $cliente->email }}</td>
