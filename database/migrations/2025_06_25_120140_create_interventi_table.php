@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->text('descrizione');
             $table->date('data_intervento');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
