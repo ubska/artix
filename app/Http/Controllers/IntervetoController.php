@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intervento;
 use Illuminate\Http\Request;
 
 class IntervetoController extends Controller
@@ -11,7 +12,8 @@ class IntervetoController extends Controller
      */
     public function index()
     {
-        //
+        $interventi = Intervento::all();
+        return view('interventi.index', compact('interventi'));
     }
 
     /**
