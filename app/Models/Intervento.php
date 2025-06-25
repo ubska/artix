@@ -13,4 +13,10 @@ class Intervento extends Model
         'data_intervento',
         'note',
     ];
+
+    // relazione
+    public function cliente()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
 }

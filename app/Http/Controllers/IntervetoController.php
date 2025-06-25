@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Intervento;
+use App\Models\Client;
+
 use Illuminate\Http\Request;
 
 class IntervetoController extends Controller
@@ -12,6 +14,8 @@ class IntervetoController extends Controller
      */
     public function index()
     {
+        $interventi = Intervento::with('cliente')->get();
+
         $interventi = Intervento::all();
         return view('interventi.index', compact('interventi'));
     }
@@ -21,7 +25,8 @@ class IntervetoController extends Controller
      */
     public function create()
     {
-        //
+        $clienti = Client::all();
+        return view('interventi.create', compact('clienti'));
     }
 
     /**
@@ -29,7 +34,16 @@ class IntervetoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'descrizione' => 'required|string',
+            'data_intervento' => 'required|date',
+            'note' => 'nullable|string',
+
+        ]);
+
+        Intervento::create($validated);
+        return redirect()->route('interventi.index');
     }
 
     /**
