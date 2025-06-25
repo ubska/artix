@@ -2,12 +2,19 @@
 
 @section('content')
     <div class="container mx-auto mt-6 max-w-xl bg-white p-6 rounded shadow">
-        <h1 class="text-2xl font-bold mb-4">Aggiungi nuovo intervento</h1>
+
 
         {{-- Form --}}
         <form method="POST" action="{{ route('interventi.store') }}">
             @csrf
 
+
+            {{-- cliente --}}
+            <div class="mb-4">
+                <label class="block font-semibold" for="descrizione">cliente id</label>
+                <input name="client_id" id="client_id" rows="3" required
+                    class="w-full border border-gray-300 rounded px-3 py-2 mt-1">{{ old('client_id') }}</input>
+            </div>
 
 
             {{-- Descrizione --}}

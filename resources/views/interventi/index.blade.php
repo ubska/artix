@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="fluid">
+        <a href="{{ route('interventi.create') }}" class="btn btn-success btn-sm">Aggiungi nuovo intervento</a>
         <table class="table">
             <thead>
                 <tr>
