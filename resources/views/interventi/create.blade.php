@@ -5,7 +5,8 @@
 
 
         {{-- Form --}}
-        <form method="POST" action="{{ route('interventi.store') }}">
+        <form method="POST" action="{{ route('interventi.store') }}" enctype="multipart/form-data">
+
             @csrf
 
 
