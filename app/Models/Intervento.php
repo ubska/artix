@@ -12,6 +12,7 @@ class Intervento extends Model
         'descrizione',
         'data_intervento',
         'note',
+        'file_path',
     ];
 
     // relazione

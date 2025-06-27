@@ -36,7 +36,11 @@
                 <label class="block font-semibold" for="note">Note</label>
                 <textarea name="note" id="note" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 mt-1">{{ old('note') }}</textarea>
             </div>
-
+            {{-- caricamento file  --}}
+            <div class="mb-3">
+                <label for="file" class="form-label">File (immagine o PDF)</label>
+                <input type="file" name="file" id="file" class="form-control">
+            </div>
             {{-- Submit --}}
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Salva Intervento
