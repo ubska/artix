@@ -73,7 +73,7 @@ class IntervetoController extends Controller
      */
     public function update(Request $request, Intervento $interventi)
     {
-        $request->validate([
+        $validated = $request->validate([
             'client_id' => 'required|exists:clients,id',
             'descrizione' => 'required|string',
             'data_intervento' => 'required|date',
@@ -86,9 +86,12 @@ class IntervetoController extends Controller
             $validated['file_path'] = $path;
         }
 
-        $interventi->update($request->all());
+
+        $interventi->update($validated);
+
         return redirect()->route('clienti.show', $interventi->client_id);
     }
+
 
     /**
      * Remove the specified resource from storage.

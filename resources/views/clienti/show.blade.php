@@ -24,6 +24,20 @@
                                         <h6><strong>Data:</strong> {{ $intervento->data_intervento }}</h6>
                                         <p><strong>Descrizione:</strong> {{ $intervento->descrizione }}</p>
                                         <p><strong>Note:</strong> {{ $intervento->note ?? '—' }}</p>
+                                        @if ($intervento->file_path)
+                                            @php
+                                                $ext = pathinfo($intervento->file_path, PATHINFO_EXTENSION);
+                                            @endphp
+
+                                            @if (in_array(strtolower($ext), ['jpg', 'jpeg', 'png', 'gif']))
+                                                <img src="{{ Storage::url($intervento->file_path) }}"
+                                                    alt="Anteprima immagine" style="max-width:200px;">
+                                            @else
+                                                <a href="{{ Storage::url($intervento->file_path) }}"
+                                                    target="_blank">Visualizza file</a>
+                                            @endif
+                                        @endif
+
                                         <a href="{{ route('interventi.edit', $intervento->id) }}"
                                             class="btn btn-sm btn-outline-primary">Modifica</a>
                                     </div>

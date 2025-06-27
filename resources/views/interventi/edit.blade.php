@@ -4,7 +4,8 @@
     <div class="container mt-4">
         <h2>Modifica Intervento</h2>
 
-        <form action="{{ route('interventi.update', $interventi->id) }}" method="POST">
+        <form action="{{ route('interventi.update', $interventi->id) }}" method="POST" enctype="multipart/form-data">
+
             @csrf
             @method('PUT')
             {{-- id cliente --}}

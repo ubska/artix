@@ -21,8 +21,18 @@
                         <td>{{ $intervento->note }}</td>
                         <td>
                             @if ($intervento->file_path)
-                                <a href="{{ Storage::url($intervento->file_path) }}" target="_blank">Visualizza file</a>
+                                @php
+                                    $ext = pathinfo($intervento->file_path, PATHINFO_EXTENSION);
+                                @endphp
+
+                                @if (in_array(strtolower($ext), ['jpg', 'jpeg', 'png', 'gif']))
+                                    <img src="{{ Storage::url($intervento->file_path) }}" alt="Anteprima immagine"
+                                        style="max-width:200px;">
+                                @else
+                                    <a href="{{ Storage::url($intervento->file_path) }}" target="_blank">Visualizza file</a>
+                                @endif
                             @endif
+
                         </td>
                     </tr>
                 @endforeach
