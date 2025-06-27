@@ -13,4 +13,9 @@ class Client extends Model
         'email',
         'address',
     ];
+
+    public function interventi()
+    {
+        return $this->hasMany(Intervento::class, 'client_id');
+    }
 }
