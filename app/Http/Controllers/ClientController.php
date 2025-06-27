@@ -43,6 +43,7 @@ class ClientController extends Controller
      */
     public function show(Client $clienti)
     {
+        $clienti->load('interventi');
         return view('clienti.show', compact('clienti'));
     }
 
