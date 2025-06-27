@@ -32,6 +32,10 @@
                 <input type="text" name="note" id="note" class="form-control"
                     value="{{ old('note', $interventi->note) }}" required>
             </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Carica file (immagine o PDF)</label>
+                <input type="file" name="file" id="file" class="form-control">
+            </div>
 
             <button type="submit" class="btn btn-primary">Salva modifiche</button>
             <a href="{{ route('clienti.index') }}" class="btn btn-secondary">Annulla</a>

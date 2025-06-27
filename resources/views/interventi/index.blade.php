@@ -19,7 +19,11 @@
                         <td>{{ $intervento->descrizione }}</td>
                         <td>{{ $intervento->data_intervento }}</td>
                         <td>{{ $intervento->note }}</td>
-
+                        <td>
+                            @if ($intervento->file_path)
+                                <a href="{{ Storage::url($intervento->file_path) }}" target="_blank">Visualizza file</a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

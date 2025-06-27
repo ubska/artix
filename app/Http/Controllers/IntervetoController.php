@@ -39,8 +39,14 @@ class IntervetoController extends Controller
             'descrizione' => 'required|string',
             'data_intervento' => 'required|date',
             'note' => 'nullable|string',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
 
         ]);
+
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('uploads', 'public');
+            $validated['file_path'] = $path;
+        }
 
         Intervento::create($validated);
         return redirect()->route('interventi.index');
@@ -72,7 +78,13 @@ class IntervetoController extends Controller
             'descrizione' => 'required|string',
             'data_intervento' => 'required|date',
             'note' => 'nullable|string',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
+
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('uploads', 'public');
+            $validated['file_path'] = $path;
+        }
 
         $interventi->update($request->all());
         return redirect()->route('clienti.show', $interventi->client_id);
