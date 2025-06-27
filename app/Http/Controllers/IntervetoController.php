@@ -57,17 +57,25 @@ class IntervetoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Intervento $interventi)
     {
-        //
+        return view('interventi.edit', compact('interventi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Intervento $interventi)
     {
-        //
+        $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'descrizione' => 'required|string',
+            'data_intervento' => 'required|date',
+            'note' => 'nullable|string',
+        ]);
+
+        $interventi->update($request->all());
+        return redirect()->route('clienti.show', $interventi->client_id);
     }
 
     /**
