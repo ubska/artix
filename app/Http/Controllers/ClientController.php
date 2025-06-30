@@ -32,7 +32,7 @@ class ClientController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone_number' => 'required|integer|max:50',
+            'phone_number' => 'required|string|max:50',
         ]);
         Client::create($request->all());
         return view('clienti.create');

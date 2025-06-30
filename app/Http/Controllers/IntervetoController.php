@@ -92,6 +92,57 @@ class IntervetoController extends Controller
         return redirect()->route('clienti.show', $interventi->client_id);
     }
 
+    // ✅ Mostra il form per creare Cliente + Intervento insieme
+    public function createWithClient()
+    {
+        return view('interventi.create_with_client');
+    }
+
+    // ✅ Salva cliente e intervento insieme
+    public function storeWithClient(Request $request)
+    {
+        $validated = $request->validate([
+            // Dati cliente
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:50',
+            'email' => 'required|email|max:255',
+            'address' => 'nullable|string',
+
+            // Dati intervento
+            'descrizione' => 'required|string',
+            'data_intervento' => 'required|date',
+            'note' => 'nullable|string',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        // Crea il cliente
+        $cliente = Client::create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'phone_number' => $validated['phone_number'],
+            'email' => $validated['email'],
+            'address' => $validated['address'] ?? null,
+        ]);
+
+        // Gestione file
+        $filePath = null;
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('uploads');
+        }
+
+        // Crea l’intervento legato al cliente
+        Intervento::create([
+            'client_id' => $cliente->id,
+            'descrizione' => $validated['descrizione'],
+            'data_intervento' => $validated['data_intervento'],
+            'note' => $validated['note'] ?? null,
+            'file_path' => $filePath,
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Cliente e intervento salvati con successo!');
+    }
+
 
     /**
      * Remove the specified resource from storage.
