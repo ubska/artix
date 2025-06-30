@@ -13,6 +13,7 @@ class Intervento extends Model
         'data_intervento',
         'note',
         'file_path',
+        'signature',
     ];
 
     // relazione
