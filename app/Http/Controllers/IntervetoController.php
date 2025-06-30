@@ -44,7 +44,7 @@ class IntervetoController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('uploads', 'public');
+            $path = $request->file('file')->store('uploads');
             $validated['file_path'] = $path;
         }
 
