@@ -43,6 +43,13 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @if ($intervento->signature)
+                                <p><strong>Firma:</strong></p>
+                                <img src="{{ $intervento->signature }}" alt="Firma Cliente"
+                                    style="border:1px solid #000; max-width:400px;">
+                            @else
+                                <p><em>Nessuna firma disponibile.</em></p>
+                            @endif
                         @else
                             <p class="text-muted">Nessun intervento registrato</p>
                         @endif

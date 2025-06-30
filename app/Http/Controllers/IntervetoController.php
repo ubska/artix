@@ -57,7 +57,8 @@ class IntervetoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $intervento = Intervento::with('cliente')->findOrFail($id);
+        return view('clienti.show', compact('clienti'));
     }
 
     /**
@@ -114,6 +115,7 @@ class IntervetoController extends Controller
             'data_intervento' => 'required|date',
             'note' => 'nullable|string',
             'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'signature' => 'nullable|string',
         ]);
 
         // Crea il cliente
@@ -138,7 +140,12 @@ class IntervetoController extends Controller
             'data_intervento' => $validated['data_intervento'],
             'note' => $validated['note'] ?? null,
             'file_path' => $filePath,
+            'signature' => $validated['signature'] ?? null,
+
+
         ]);
+
+
 
         return redirect()->route('dashboard')->with('success', 'Cliente e intervento salvati con successo!');
     }
