@@ -24,6 +24,7 @@
                                         <h6><strong>Data:</strong> {{ $intervento->data_intervento }}</h6>
                                         <p><strong>Descrizione:</strong> {{ $intervento->descrizione }}</p>
                                         <p><strong>Note:</strong> {{ $intervento->note ?? '—' }}</p>
+
                                         @if ($intervento->file_path)
                                             @php
                                                 $ext = pathinfo($intervento->file_path, PATHINFO_EXTENSION);
@@ -38,18 +39,20 @@
                                             @endif
                                         @endif
 
+                                        {{-- Firma --}}
+                                        @if ($intervento->signature)
+                                            <p><strong>Firma:</strong></p>
+                                            <img src="{{ $intervento->signature }}" alt="Firma Cliente"
+                                                style="border:1px solid #000; max-width:400px;">
+                                        @else
+                                            <p><em>Nessuna firma disponibile.</em></p>
+                                        @endif
+
                                         <a href="{{ route('interventi.edit', $intervento->id) }}"
                                             class="btn btn-sm btn-outline-primary">Modifica</a>
                                     </div>
                                 </div>
                             @endforeach
-                            @if ($intervento->signature)
-                                <p><strong>Firma:</strong></p>
-                                <img src="{{ $intervento->signature }}" alt="Firma Cliente"
-                                    style="border:1px solid #000; max-width:400px;">
-                            @else
-                                <p><em>Nessuna firma disponibile.</em></p>
-                            @endif
                         @else
                             <p class="text-muted">Nessun intervento registrato</p>
                         @endif
