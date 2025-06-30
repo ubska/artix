@@ -34,6 +34,22 @@
                 </div>
             </div>
 
+            <!-- Card nuovo -->
+            <div class="col-md-4">
+                <div class="card shadow-sm text-center h-100">
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <div class="mb-3">
+                            <i class="bi bi-wrench-adjustable-circle-fill" style="font-size: 3rem; color: #198754;"></i>
+                        </div>
+                        <h5 class="card-title">+ NUOVO</h5>
+                        <a href="{{ route('interventi.createWithClient') }}" class="btn btn-success">
+                            + Nuovo Intervento
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

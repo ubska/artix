@@ -19,7 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/interventi/nuovo-completo', [IntervetoController::class, 'createWithClient'])->name('interventi.createWithClient');
+Route::post('/interventi/nuovo-completo', [IntervetoController::class, 'storeWithClient'])->name('interventi.storeWithClient');
+
 Route::resource('clienti', ClientController::class)->middleware('auth');
 Route::resource('interventi', IntervetoController::class)->middleware('auth');
+
 
 require __DIR__ . '/auth.php';
