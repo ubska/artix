@@ -71,6 +71,13 @@
                         <label for="file" class="form-label">File allegato (immagine o PDF)</label>
                         <input type="file" name="file" class="form-control">
                     </div>
+
+                    <div class="mb-3">
+                        <label>Firma:</label>
+                        <canvas id="signature-pad" width="400" height="200" style="border:1px solid #000;"></canvas>
+                        <input type="hidden" name="signature" id="signature">
+                    </div>
+
                 </div>
             </div>
 
@@ -79,3 +86,19 @@
         </form>
     </div>
 @endsection
+@push('scripts')
+    <script type="module">
+        import SignaturePad from 'https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.min.js';
+
+        const canvas = document.getElementById('signature-pad');
+        const signaturePad = new SignaturePad(canvas);
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', () => {
+            if (!signaturePad.isEmpty()) {
+                const dataURL = signaturePad.toDataURL();
+                document.getElementById('signature').value = dataURL;
+            }
+        });
+    </script>
+@endpush
