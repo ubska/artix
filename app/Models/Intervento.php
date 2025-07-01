@@ -15,6 +15,10 @@ class Intervento extends Model
         'file_path',
         'signature',
     ];
+    protected $casts = [
+        'data_intervento' => 'datetime',
+    ];
+
 
     // relazione
     public function cliente()

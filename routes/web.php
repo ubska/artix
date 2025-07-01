@@ -27,4 +27,7 @@ Route::resource('clienti', ClientController::class)->middleware('auth');
 Route::resource('interventi', InterventoController::class)->middleware('auth');
 
 
+Route::get('/interventi/{id}/download-pdf', [InterventoController::class, 'downloadPdf'])->name('interventi.downloadPdf');
+
+
 require __DIR__ . '/auth.php';

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Intervento;
 use App\Models\Client;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InterventoController extends Controller
 {
@@ -155,6 +157,16 @@ class InterventoController extends Controller
         return redirect()->route('dashboard')->with('success', 'Cliente e intervento salvati con successo!');
     }
 
+    public function downloadPdf($id)
+    {
+        $intervento = Intervento::with('cliente')->findOrFail($id);
+
+        $pdf = PDF::loadView('interventi.pdf', compact('intervento'));
+
+        $filename = 'intervento_' . $intervento->id . '.pdf';
+
+        return $pdf->download($filename);
+    }
 
     /**
      * Remove the specified resource from storage.
