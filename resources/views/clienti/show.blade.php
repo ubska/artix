@@ -47,6 +47,10 @@
                                         @else
                                             <p><em>Nessuna firma disponibile.</em></p>
                                         @endif
+                                        <a href="{{ route('interventi.downloadPdf', $intervento->id) }}"
+                                            class="btn btn-primary">
+                                            Scarica PDF
+                                        </a>
 
                                         <a href="{{ route('interventi.edit', $intervento->id) }}"
                                             class="btn btn-sm btn-outline-primary">Modifica</a>
