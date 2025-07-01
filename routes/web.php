@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\IntervetoController;
+use App\Http\Controllers\InterventoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,11 +20,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/interventi/nuovo-completo', [IntervetoController::class, 'createWithClient'])->name('interventi.createWithClient');
-Route::post('/interventi/nuovo-completo', [IntervetoController::class, 'storeWithClient'])->name('interventi.storeWithClient');
+Route::get('/interventi/nuovo-completo', [InterventoController::class, 'createWithClient'])->name('interventi.createWithClient');
+Route::post('/interventi/nuovo-completo', [InterventoController::class, 'storeWithClient'])->name('interventi.storeWithClient');
 
 Route::resource('clienti', ClientController::class)->middleware('auth');
-Route::resource('interventi', IntervetoController::class)->middleware('auth');
+Route::resource('interventi', InterventoController::class)->middleware('auth');
 
 
 require __DIR__ . '/auth.php';
